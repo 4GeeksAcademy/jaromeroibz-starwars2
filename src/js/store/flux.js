@@ -1,3 +1,11 @@
+import React, { useState, useEffect, useContext } from "react";
+import propTypes from "prop-types";
+import { Link, useParams } from "react-router-dom";
+import {Context} from "../store/appContext";
+import rigoImage from "../../img/rigo-baby.jpg";
+import "../../styles/home.css";
+import {Home} from "../views/home";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -12,7 +20,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			naves: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -20,9 +29,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 				getActions().changeColor(0, "green");
 			},
 			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
+
+				// state.actions.loadSomeData();
+	
+		
+				console.log('se cargo desde flux')
+				fetch('https://www.swapi.tech/api/starships')
+				// + params.nave_id 
+				.then( (response) => response.json())
+				// .then( (data) => console.log(data.results))
+				.then( (data) => setStore({ naves: data.results}) )
+		
 			},
 			changeColor: (index, color) => {
 				//get the store
