@@ -5,13 +5,12 @@ import ScrollToTop from "./component/scrollToTop";
 import { Home } from "./views/home";
 import { Demo } from "./views/demo";
 import { Single } from "./views/single";
-import { Navevista } from "./views/navevista";
+import Detail from "./views/Detail.js";
 
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
-import { Nave } from "./component/nave"
 
 //create your first component 
 const Layout = () => {
@@ -28,7 +27,7 @@ const Layout = () => {
 						<Route path="/" element={<Home />} />
 						<Route path="/demo" element={<Demo />} />
 						<Route path="/single/:theid" element={<Single />} />
-						<Route path="/nave-info/:nave_id" element={<Navevista />} />
+						<Route path="/:nature/:id" element={<Detail />} />
 						<Route path="*" element={<h1>Not found!</h1>} />
 					</Routes>
 					<Footer />

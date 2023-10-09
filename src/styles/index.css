@@ -1,3 +1,31 @@
 /* 
     General Styles
 */
+.my-card{
+    min-width: 300px;
+}
+.my-carousel{
+    display: flex;
+    overflow-x: scroll;
+}
+.photo{
+    display: flex;
+    float: left
+}
+.row{
+    color: red;
+    clear:both;
+    margin: 0 auto;
+    width: 75%;
+}
+.detail{
+    width: 75%;
+    margin: 0 auto;
+}
+.detail-img{
+    max-width: 80%;
+    max-height: 80%;
+}
+.hr{
+    color:red;
+}
