@@ -53,8 +53,7 @@ export const Home = () => {
 								<p className="card-text"><strong>Climate:</strong> {item.properties.climate}</p> 
 
 								<Link to= {`/planets/${item._id}`}href="#" className="btn btn-primary">Learn More</Link>
-								<button className="btn btn-primary mx-4" onClick={actions.addFavorites}>Favorites</button>
-							</div>
+								<button className="btn btn-primary mx-4" onClick={() => {actions.addFavorites(item)}}>Favorites</button>							</div>
 							</div>
 						</div>
 					)	

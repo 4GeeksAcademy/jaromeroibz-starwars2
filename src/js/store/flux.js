@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import propTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
-import {Context} from "../store/appContext";
+import { Context } from "../store/appContext";
 import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
-import {Home} from "../views/home";
+import { Home } from "../views/home";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	const params = useParams();
@@ -34,9 +34,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			loadSomeData: () => {
 
-			// 	// state.actions.loadSomeData();
-			
-		
+				// 	// state.actions.loadSomeData();
+
+
 			},
 			changeColor: (index, color) => {
 				//get the store
@@ -52,12 +52,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ demo: demo });
 			},
-			getCharacters : () => {
+			getCharacters: () => {
 
-				fetch(`${getStore().urlBase}/people`) 
-					.then((response) => response.json()) 
+				fetch(`${getStore().urlBase}/people`)
+					.then((response) => response.json())
 					.then((data) => {
-						for (let item of data.results){ 
+						for (let item of data.results) {
 							fetch(item.url)
 								.then((response) => response.json())
 								.then((data) => {
@@ -69,12 +69,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 
 			},
-			getPlanets : () => {
+			getPlanets: () => {
 
-				fetch(`${getStore().urlBase}/planets`) 
-					.then((response) => response.json()) 
+				fetch(`${getStore().urlBase}/planets`)
+					.then((response) => response.json())
 					.then((data) => {
-						for (let item of data.results){ 
+						for (let item of data.results) {
 							fetch(item.url)
 								.then((response) => response.json())
 								.then((data) => {
@@ -87,11 +87,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 			addFavorites: (item) => {
+				let exist = getStore().favorites.some((fav) => item.properties.name == fav)
+				console.log(exist)
+				console.log(item)
+				if (exist) {
+					let newArray = getStore().favorites.filter((fav) => item != fav)
+					setStore({
+						favorites: newArray
+					})
+				} else {
+					setStore({
+						favorites: [...getStore().favorites, item.properties.name]
+					})
+				}
+			},
+			deleteFavorite: (item) => {
+
+				let newArray = getStore().favorites.filter((fav) => item != fav)
 				setStore({
-					favorites: [...getStore().favorites, item.properties.name]
+					favorites: newArray
 				})
-				
-			} 
+			}
 		}
 	};
 };
